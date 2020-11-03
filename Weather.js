@@ -1,19 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
-export default function Weather({temp}){
+const weatherOptions = {
+    Thunderstorm: {
+        iconName: "weather-lightning",
+        gradient: ["#283048", "#859398"]
+    },
+    Drizzle: {
+        iconName: "weather-partly-rainy",
+        gradient: ["#00416A", "#E4E5E6"]
+    },
+    Rain: {
+        iconName: "weather-pouring",
+        gradient: ["#4b6cb7", "#182848"]
+    },
+    Snow: {
+        iconName: "weather-snowy",
+        gradient: ["#acb6e5", "#86fde8"]
+    },
+    Atmosphere: {
+        iconName: "weather-fog",
+        gradient: ["#FFA17F", "#00223E"]
+    },
+    Clear: {
+        iconName: "weather-sunny",
+        gradient: ["#FF5F6D", "#FFC371"]
+    },
+    Clouds: {
+        iconName: "weather-cloudy",
+        gradient: ["#bdc3c7", "#2c3e50"]
+    }
+}
+
+export default function Weather({ temp, condition }){
     return (
-        <View style={styles.constainer}>
+            <LinearGradient
+                colors={weatherOptions[condition].gradient}
+                style={styles.container}
+            >
+                <StatusBar barStyle="light-content" />
             <View style={styles.halfContainer}>
-            <MaterialCommunityIcons name="weather-lightning-rainy" size={96} />
+            <MaterialCommunityIcons 
+            name={weatherOptions[condition].iconName} 
+            size={96} 
+            color="white" 
+            />
             <Text style={styles.temp}>{temp}℃</Text>
             </View>
             <View style={styles.halfContainer}>
-
             </View>
-        </View>
+            </LinearGradient>
     );
 }
 
@@ -31,13 +70,14 @@ Weather.PropTypes = {
 };  
 
 const styles = StyleSheet.create({
-    constainer: {
+    container: {
         flex: 1, 
         justifyContent: "center",
         alignItems: "center"
     },
     temp: {
-        fontSize: 42
+        fontSize: 42,
+        color: "white"
     },
     halfContainer: {
         flex: 1,
