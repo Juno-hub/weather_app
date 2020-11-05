@@ -56,7 +56,7 @@ export default function Weather({ temp, condition }){
                 style={styles.container}
             >
                 <StatusBar barStyle="light-content" />
-            <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
+            <View style={styles.halfContainer}>
             <MaterialCommunityIcons 
             name={weatherOptions[condition].iconName} 
             size={96} 
@@ -64,7 +64,7 @@ export default function Weather({ temp, condition }){
             />
             <Text style={styles.temp}>{temp}℃</Text>
             </View>
-            <View style={styles.halfContainer}>
+            <View style={styles.textContainer}>
                 <Text style={styles.title}>{weatherOptions[condition].title}</Text>
                 <Text style={styles.subtitle}>{weatherOptions[condition].subtitle}</Text>
             </View>
@@ -88,8 +88,6 @@ Weather.PropTypes = {
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
-        justifyContent: "center",
-        alignItems: "center"
     },
     temp: {
         fontSize: 42,
@@ -104,15 +102,19 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 44,
         fontWeight: "300",
-        marginBottom: 10   
+        marginBottom: 10,
+        textAlign: "left"   
     },
     subtitle: {
         color: "white",
         fontSize: 24,
-        fontWeight: "600"
+        fontWeight: "600",
+        textAlign: "left"
     },
     textContainer: {
-        paddingHorizontal: 20,
-        alignItems: "flex-start"
+        flex: 1,
+        paddingHorizontal: 40,
+        alignItems: "flex-start",
+        justifyContent: "center"
     }
 });
