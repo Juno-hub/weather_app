@@ -7,31 +7,45 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const weatherOptions = {
     Thunderstorm: {
         iconName: "weather-lightning",
-        gradient: ["#283048", "#859398"]
+        gradient: ["#283048", "#859398"],
+        title: "Thunderstorm in the house",
+        subtitle: "Actually, outside of the house"
     },
     Drizzle: {
         iconName: "weather-partly-rainy",
-        gradient: ["#00416A", "#E4E5E6"]
+        gradient: ["#00416A", "#E4E5E6"],
+        title: "Drizzle",
+        subtitle: "Is like rain"
     },
     Rain: {
         iconName: "weather-pouring",
-        gradient: ["#4b6cb7", "#182848"]
+        gradient: ["#4b6cb7", "#182848"],
+        title: "Raining like a MF",
+        subtitle: "For more info look outside",
     },
     Snow: {
         iconName: "weather-snowy",
-        gradient: ["#acb6e5", "#86fde8"]
+        gradient: ["#acb6e5", "#86fde8"],
+        title: "Cold as balls",
+        subtitle: "Do you want to build a snowman? Fuck no."
     },
     Atmosphere: {
         iconName: "weather-fog",
-        gradient: ["#FFA17F", "#00223E"]
+        gradient: ["#FFA17F", "#00223E"],
+        title: "Fog, Mist...",
+        subtitle: "Thanks a lot China"
     },
     Clear: {
         iconName: "weather-sunny",
-        gradient: ["#FF5F6D", "#FFC371"]
+        gradient: ["#FF5F6D", "#FFC371"],
+        title: "Sunny as fuck",
+        subtitle: "Go get your ass burnt"
     },
     Clouds: {
         iconName: "weather-cloudy",
-        gradient: ["#bdc3c7", "#2c3e50"]
+        gradient: ["#bdc3c7", "#2c3e50"],
+        title: "Clouds",
+        subtitle: "I know, fucking boring"
     }
 }
 
@@ -42,7 +56,7 @@ export default function Weather({ temp, condition }){
                 style={styles.container}
             >
                 <StatusBar barStyle="light-content" />
-            <View style={styles.halfContainer}>
+            <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
             <MaterialCommunityIcons 
             name={weatherOptions[condition].iconName} 
             size={96} 
@@ -51,6 +65,8 @@ export default function Weather({ temp, condition }){
             <Text style={styles.temp}>{temp}℃</Text>
             </View>
             <View style={styles.halfContainer}>
+                <Text style={styles.title}>{weatherOptions[condition].title}</Text>
+                <Text style={styles.subtitle}>{weatherOptions[condition].subtitle}</Text>
             </View>
             </LinearGradient>
     );
@@ -83,5 +99,20 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
+    },
+    title: {
+        color: "white",
+        fontSize: 44,
+        fontWeight: "300",
+        marginBottom: 10   
+    },
+    subtitle: {
+        color: "white",
+        fontSize: 24,
+        fontWeight: "600"
+    },
+    textContainer: {
+        paddingHorizontal: 20,
+        alignItems: "flex-start"
     }
 });
